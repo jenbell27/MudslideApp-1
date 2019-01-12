@@ -39,17 +39,23 @@ npm run build
 
 ## Source Directory Structure
 
-- ### components - all dynamica ui components
+- ### components 
+    all dynamica ui components
 
-- ### core - javaScript files that manage the main business logic of the app: controller, view, data model and etc. 
+- ### core 
+    javaScript files that manage the main business logic of the app: controller, view, data model and etc. 
 
-- ### layouts - template `.html` files that specify how the app and each section will be rendered. 
+- ### layouts 
+    template `.html` files that specify how the app and each section will be rendered. 
 
-- ### static - images, logos and etc
+- ### static 
+    images, logos and etc
 
-- ### styles - all `.scss` files, let's use the `index.scss` as a entry point to load all other `.scss` files
+- ### styles 
+    all `.scss` files, let's use the `index.scss` as a entry point to load all other `.scss` files
 
-- ### utils - the utility JavaScript files that could be used site-wide
+- ### utils     
+    the utility JavaScript files that could be used site-wide
 
 <br>
 
