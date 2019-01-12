@@ -9,21 +9,22 @@
 	<body>
 		<!-- <div class="esri-header-barrier"></div> -->
 
+		<%= require('html-loader?interpolate!./topnav.template.html') %>
+
 		<div class='main-content'>
+
+			<div id='sidebarDiv'>
+				<div class='panel panel-no-border'>
+					some content gose to here
+				</div>
+			</div>
 
             <div id='viewDiv'></div>
 
             
             <!--
             <%= require('html-loader?interpolate!./test.template.html') %>
-
-            <%= require('html-loader?interpolate!./foo.template.html') %>
             -->
-
-            <div id='cardViewDiv'></div>
-
-
-            <div id='practiceDiv'></div>
 
 		</div>
 

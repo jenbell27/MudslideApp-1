@@ -4,3 +4,38 @@
 
 // load customized styles
 @import 'map.scss';
+@import 'topnav.scss';
+@import 'sidebar.scss';
+
+// variables
+$top-nav-height: 60px;
+$sidebar-width: 400px;
+
+.app-top-nav{
+    height: $top-nav-height;
+    line-height: $top-nav-height;
+    width: 100%;
+}
+
+.main-content {
+    position: absolute;
+    top: $top-nav-height;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#sidebarDiv {
+    position: absolute;
+    top: 0;
+    width: $sidebar-width;
+    bottom: 0;
+}
+
+#viewDiv {
+    position: absolute;
+    top: 0;
+    left: $sidebar-width;
+    right: 0;
+    bottom: 0;
+}

@@ -6,14 +6,14 @@ export default function(){
         console.log('initiating app view');
 
         
-        const cardview = new CardView({
-            conatinerID: 'cardViewDiv',
-            onClickHandler: (message)=>{
-                console.log(message)
-            }
-        });
+        // const cardview = new CardView({
+        //     conatinerID: 'cardViewDiv',
+        //     onClickHandler: (message)=>{
+        //         console.log(message)
+        //     }
+        // });
         
-        cardview.render();
+        // cardview.render();
 
     };
 
