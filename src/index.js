@@ -23,9 +23,7 @@ loadModules([
 
         let mapView = null;
 
-        const init = (options={
-            
-        })=>{
+        const init = (options)=>{
 
             console.log('initiating map control');
 
