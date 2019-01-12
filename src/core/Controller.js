@@ -17,6 +17,8 @@ export default function(options={
         view.init();
 
         findBuildingAddresses();
+
+        console.log(view);
     };
 
     // return all building addresses inside of the input geometry
@@ -33,6 +35,7 @@ export default function(options={
         })
         .done(function( res ) {
             console.log( "findBuildingAddresses", res);
+            view.cardPanel.render(res);
         });
     };
 
