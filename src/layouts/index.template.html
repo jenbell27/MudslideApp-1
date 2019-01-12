@@ -15,7 +15,8 @@
 
 			<div id='sidebarDiv'>
 				<div class='panel panel-no-border'>
-					some content gose to here
+
+					<div id='cardPanel'></div>
 				</div>
 			</div>
 
@@ -27,6 +28,8 @@
             -->
 
 		</div>
+
+		<%= require('html-loader?interpolate!./splash.template.html') %>
 
 		<!-- <div class="esri-footer-barrier"></div> -->
 
