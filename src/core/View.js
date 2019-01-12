@@ -3,7 +3,7 @@ import CardPanel from '../components/CardPanel';
 
 export default function(){
 
-    let cardPanel;
+    let cardPanel = new CardPanel('cardPanel');
 
     const init = ()=>{
         console.log('initiating app view');
@@ -19,7 +19,7 @@ export default function(){
         // cardview.render();
 
         //renders the CardPanel 
-        cardPanel = new CardPanel('cardPanel');
+        // cardPanel = ;
         // cardPanel.render(data);
 
     };
