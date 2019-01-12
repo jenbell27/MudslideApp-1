@@ -1,0 +1,6 @@
+// load js api and calcite styles
+@import url('https://js.arcgis.com/4.10/esri/css/main.css');
+@import '~calcite-web/dist/css/calcite-web.min.css';
+
+// load customized styles
+@import 'map.scss';
