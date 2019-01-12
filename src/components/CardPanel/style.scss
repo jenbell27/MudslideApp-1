@@ -1,6 +1,33 @@
-p
-{
-  margin:0;
-  padding:0;
-  line-height : 20px;
+#cardPanel{
+  height: 90%;
+  overflow-y: auto;
+  padding: 0 .5rem;
+}
+
+.address-card {
+  padding: 1rem 0;
+  border-bottom: 1px solid #efefef;
+}
+
+// p
+// {
+//   margin:0;
+//   padding:0;
+//   line-height : 20px;
+// }
+
+#cardPanel::-webkit-scrollbar {
+  width: 5px;
+}
+
+#cardPanel::-webkit-scrollbar-track {
+  background: rgba(200, 200, 200, .5); 
+}
+
+#cardPanel::-webkit-scrollbar-thumb {
+  background: #ccc; 
+}
+
+#cardPanel::-webkit-scrollbar-thumb:hover {
+  background: #a9a9a9; 
 }
