@@ -1,4 +1,5 @@
 import {loadModules} from 'esri-loader';
+import * as calcite from 'calcite-web';
 
 // import custome modules
 import Controller from './core/Controller';
@@ -73,7 +74,7 @@ loadModules([
     
 
     initApp();
-
+    calcite.init();
 })
 .catch(err => {
     // handle any errors
