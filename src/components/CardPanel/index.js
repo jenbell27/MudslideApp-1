@@ -37,6 +37,7 @@ export default function(elementId){
                             ${address.state},
                             ${address.zip}
                         </p>
+                    <hr>
             `;
 
             cardsHtml+= html;
