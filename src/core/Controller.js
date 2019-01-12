@@ -14,7 +14,11 @@ export default function(options={
 
         mapControl.init();
         
-        view.init();
+        view.init({
+            addressCardOnClickHandler: (data)=>{
+                mapControl.zoomToAddress(data);
+            }
+        });
 
         findBuildingAddresses();
 
@@ -36,6 +40,7 @@ export default function(options={
         .done(function( res ) {
             console.log( "findBuildingAddresses", res);
             view.cardPanel.render(res);
+            mapControl.showAddresses(res);
         });
     };
 

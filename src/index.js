@@ -47,8 +47,18 @@ loadModules([
 
         };
 
+        const showAddresses = (data)=>{
+            console.log('show addresses on map', data);
+        };
+
+        const zoomToAddress = (data)=>{
+            console.log('zoom to address', data);
+        }
+
         return {
-            init
+            init,
+            showAddresses,
+            zoomToAddress
         };
 
     };
