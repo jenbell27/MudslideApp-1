@@ -3,7 +3,12 @@ import CardPanel from '../components/CardPanel';
 
 export default function(){
 
-    let cardPanel = new CardPanel('cardPanel');
+    let cardPanel = new CardPanel({
+        containerID: 'cardPanel',
+        onClickHandler: function(addressPlusLocation){
+            console.log(addressPlusLocation);
+        }
+    });
 
     const init = ()=>{
         console.log('initiating app view');
