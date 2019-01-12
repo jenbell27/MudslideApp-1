@@ -15,11 +15,10 @@ export default function(options={
 
             const html = `
                 <div class='address-card'>
-                        <p class="fonct-size--1 js-show-address" data-index='${index}'>
-                            ${address.address.LongLabel}
-                        </p>
-                    <hr>
-                <div>
+                    <span class="fonct-size--1 js-show-address" data-index='${index}'>
+                        ${address.address.LongLabel}
+                    </span>
+                </div>
             `;
 
             cardsHtml+= html;
