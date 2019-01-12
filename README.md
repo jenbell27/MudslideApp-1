@@ -81,6 +81,16 @@ npm run build
     ```
 
 - push your changes
+
+    - commit the changes first
+        ```
+        git add .
+
+        git commit -m "YOUR MESSAGE"
+        ```
     
     - push changes to your fork
+        ````
+        git push origin master
+        ```
     - go to your fork on GitHub and create a new pull request
