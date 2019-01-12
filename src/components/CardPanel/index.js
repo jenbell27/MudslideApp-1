@@ -1,62 +1,45 @@
 import './style.scss'
 
-export default function(elementId){
-    const container = document.getElementById(elementId);
-
-    // const data = [
-    //     {
-    //         'address': '123 Foo Street',
-    //         'city': 'Redlands',
-    //         'state': "CA",
-    //         'zip': '92350'
-    //     },
-    //     {
-    //         'address': '989 Bar Dr.',
-    //         'city': 'Yucaipa',
-    //         'state': "CA",
-    //         'zip': '92399'
-    //     },
-    //     {
-    //         'address': 'Muscoy Street',
-    //         'city': 'San Bernardino',
-    //         'state': "CA",
-    //         'zip': '92407'
-    //     }
-    // ]
+export default function(options={
+    containerID: 'cardPanel',
+    onClickHandler: null
+}){
+    const container = document.getElementById(options.containerID);
 
     const render = (addressData=[])=>{
 
         var cardsHtml = '';
 
-        addressData.forEach(function(address){
+        addressData.forEach(function(address, index){
+
 
             const html = `
-                    <h1 id=addr class="trailer-half">${address.address}</h1>
-                        <p class"fonct-size--1>
-                            ${address.city}
-                            ${address.state},
-                            ${address.zip}
+                <div class='address-card'>
+                        <p class="fonct-size--1 js-show-address" data-index='${index}'>
+                            ${address.address.LongLabel}
                         </p>
                     <hr>
+                <div>
             `;
 
             cardsHtml+= html;
         });
 
         container.innerHTML = cardsHtml;
-
-        // container.innerHTML = 
-        // '<div class="card card-wide">'+
-        //     '<div class="card-content">'+
-        //         '<h1 id=addr class="trailer-half">'+ addressData.address +'</h1>'+
-        //             '<p id=city class="font-size--1 trailer-half">'+ addressData.city +'</p>'+
-        //             '<p id=state class="font-size--1 trailer-half">'+ addressData.state +'</p>'+
-        //             '<p id=zip class="font-size--1 trailer-half">'+ addressData.zip +'</p>';
         
-        // initClickListener();
+        initClickListener(addressData);
     };
 
+    const initClickListener = function(addressData){
+        container.addEventListener('click', function(evt){
 
+            if(evt.target.classList.contains('js-show-address')){
+                const targetData  = addressData[+evt.target.dataset.index];
+                options.onClickHandler(targetData);
+            }
+
+        });
+    }
 
     return {
         render
