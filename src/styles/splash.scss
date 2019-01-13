@@ -1,4 +1,4 @@
-#splashWindowWrap {
+#splashWindowWrap{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -9,13 +9,58 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    //justify-content: space-between;
+
 }
 
 #splashWindow {
-   
-    width: 70%;
-    // height: 70%; 
+     width: 60%;
+     
+     //height: 70%; 
+}
 
+#closeIcon {
+    float: right;
+}
+
+// #slideLogo{
+//     display: block;
+//     margin-left:auto;
+//     margin-right:auto;
+//     width:150px;
+//     height:150px;
+// }
+
+#splashTitle{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+#splashSearchButton{
     
+    display: block;
+    margin: 0 auto;
+    width: 35%;
+    background-color: #119ABB;
+    margin-bottom: 20px;
+}
+
+#splashInput{
+    //margin-top: 100px;
+    margin: 10 auto;
+    width: 70%;
+}
+
+
+.bg-img-div {
+ //background: url('../images/SlideLogo.png') center center no-repeat;
+ background-image: url("../images/SlideLogo.png");
+  height: 150px;
+  width: 100%;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: contain; 
+  
 }
 

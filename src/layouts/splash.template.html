@@ -22,9 +22,24 @@
 
 <div id="splashWindowWrap">
     <div id="splashWindow">
-        <div class='panel'>
-            <h3>Location</h3>
-            <input type="text" placeholder="Enter address">
+        <div class='panel padding-left-4 padding-right-4'>
+            <div id="closeIcon" class="icon-ui-close js-hide-splash"></div>
+            
+            <!-- <h3>Location</h3> -->
+            <div class="bg-img-div">
+                    <!-- <img src="../images/SlideLogo.png"> -->
+            </div>
+            <!-- <img id="slideLogo" src="../images/SlideLogo.png"> -->
+            
+            <h4 id="splashTitle">
+                    The SLIDE app, built for Esri's HACK-THE-MAP-3, 
+                    determines structures susceptible to mudslides based on current precipitation forecasts & landslide risk analysis.
+                    To begin, enter your city in the search bar below.
+                </h4>
+            
+            <input id="splashInput" type="text" placeholder="Enter city" class="modifier-class input-search">
+            <button id="splashSearchButton" class="btn modifier-class">SEARCH</button>
+            <!-- <button id="splashCancelButton" class="btn btn-clear js-hide-splash">Cancel</button> -->
         </div>
     </div>
 </div>
