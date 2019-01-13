@@ -97,10 +97,33 @@ export default function(options={
         return data.filter(function(item) {
             return seen.hasOwnProperty(item.address.LongLabel) ? false : (seen[item.address.LongLabel] = true);
         });
-    }
+    };
+
+    const getAddressDataAsCsv = ()=>{
+
+        const addressesStr = addressInRiskArea.map(d=>{
+            return d.address.Match_addr;
+        }).join('\r\n');
+
+        const outputStr = `data:text/csv;charset=utf-8,addresses in risk area\r\n${addressesStr}`;
+        
+        return outputStr; 
+    };
+
+    const downloadAsCsv = ()=>{
+        const csvStr = getAddressDataAsCsv();
+        const encodedUri = encodeURI(csvStr);
+        const link = document.createElement("a");
+
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "addresses.csv");
+        document.body.appendChild(link); // Required for FF
+        link.click();
+    };
 
     return {
-        init
+        init,
+        downloadAsCsv
     };
     
 }
