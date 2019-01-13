@@ -103,15 +103,19 @@ loadModules([
             data.forEach(function(element){
                 populateTemplate(element.address);
                 displayPoint(element);
+                populateFeatureLayer(element);
                 
             });
 
-            mapView.goTo({
-                //target: [data.location.x,data.location.y],
-                center: [data[0].location.x,data[0].location.y],
-                zoom: 12
-            });
+            zoomToMap(data[0].location.x,data[0].location.y,12);
         };
+
+        const zoomToMap = (x,y,zoomLevel) =>{
+            mapView.goTo({
+                center:   [x,y],
+                zoom: zoomLevel
+            });
+        }
 
         const displayPoint = (element)=>{
             let point = {
@@ -138,6 +142,10 @@ loadModules([
                 center: [data.location.x,data.location.y],
                 zoom: 18
             });
+        }
+
+        const populateFeatureLayer = (feature)=>{
+            console.log("polulating featureLayer");
         }
 
         return {
