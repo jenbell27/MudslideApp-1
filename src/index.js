@@ -16,7 +16,8 @@ loadModules([
     "esri/Graphic",
     "esri/symbols/PictureMarkerSymbol",
     "esri/widgets/Home",
-    "esri/widgets/Search"
+    "esri/widgets/Search",
+    "esri/widgets/Popup"
 ]).then(([
     MapView, 
     WebMap,
@@ -24,7 +25,8 @@ loadModules([
     Graphic,
     PictureMarkerSymbol,
     Home,
-    Search
+    Search,
+    Popup
 ])=>{
 
     const MapControl = function(MapControlOptions={
@@ -40,6 +42,10 @@ loadModules([
         };
 
         let popupTemplate = {
+            content: ''
+        };
+
+        let popup = {
             content: ''
         };
 
@@ -62,6 +68,7 @@ loadModules([
             // and we show that map in a container w/ id #viewDiv
             mapView = MapView({
                 map: webmap,
+                popup: popup,
                 container: MapControlOptions.container
             });
 
@@ -90,6 +97,8 @@ loadModules([
                 <p>${feature.Address}</p>
                 <p>${feature.City}, ${feature.LongLabel.split(", ")[2]} ${feature.Postal}</p>
             `;
+
+            mapView.popup.content = populateTemplate.content;
         };
 
         const showAddresses = (data)=>{
@@ -107,12 +116,12 @@ loadModules([
                 
             });
 
-            zoomToMap(data[0].location.x,data[0].location.y,12);
+           // zoomToMap(data[0].location.x,data[0].location.y,12);
         };
 
         const zoomToMap = (x,y,zoomLevel) =>{
             mapView.goTo({
-                center:   [x,y],
+                center: [x,y],
                 zoom: zoomLevel
             });
         }
@@ -130,28 +139,53 @@ loadModules([
                 symbol: markerSymbol,
                 popupTemplate: popupTemplate
             });
+            
 
             graphicsLayer.add(pointGraphic);
-
+            //add the graphic to the popup.features array of graphics
+            mapView.popup.features.push(pointGraphic);
         }
 
         const zoomToAddress = (data)=>{
             console.log('zoom to address', data);
-            mapView.goTo({
-                //target: [data.location.x,data.location.y],
-                center: [data.location.x,data.location.y],
-                zoom: 18
+            // mapView.goTo({
+            //     //target: [data.location.x,data.location.y],
+            //     center: [data.location.x,data.location.y],
+            //     zoom: 18
+            // });
+            zoomToMap(data.location.x,data.location.y,18);
+           //debugger;
+           let temp = `<p>${data.address.Address}</p>
+                <p>${data.address.City}, ${data.address.LongLabel.split(", ")[2]} ${data.address.Postal}</p>
+            `;
+            mapView.popup.open({
+                title: "Open from sidebar",
+                location: [data.location.x,data.location.y],
+                content: temp
             });
         }
 
         const populateFeatureLayer = (feature)=>{
             console.log("polulating featureLayer");
-        }
+        };
+
+        const getMapViewExtent = ()=>{
+            const ext = {
+                "xmin": mapView.extent.xmin,
+                "ymin": mapView.extent.ymin,
+                "xmax": mapView.extent.xmax,
+                "ymax": mapView.extent.ymax,
+                "spatialReference":{"wkid":102100,"latestWkid":3857}
+            };
+            return ext;
+        };
+
 
         return {
             init,
             showAddresses,
-            zoomToAddress
+            zoomToAddress,
+            getMapViewExtent
         };
 
     };
