@@ -101,7 +101,18 @@ loadModules([
             mapView.popup.content = populateTemplate.content;
         };
 
+        const checkData = (addressesArray)=>{
+            if(addressesArray.length > 0){
+                return true;
+            }
+            return false;
+        }
+
         const showAddresses = (data)=>{
+            if(!checkData(data)){
+                alert("Sorry there are no addresses in this extent");
+                return;
+            }
             console.log('show addresses on map', data);
             
             //make sure to clear any existing graphics
@@ -112,8 +123,6 @@ loadModules([
             data.forEach(function(element){
                 populateTemplate(element.address);
                 displayPoint(element);
-                populateFeatureLayer(element);
-                
             });
 
            // zoomToMap(data[0].location.x,data[0].location.y,12);
@@ -155,19 +164,15 @@ loadModules([
             // });
             zoomToMap(data.location.x,data.location.y,18);
            //debugger;
-           let temp = `<p>${data.address.Address}</p>
+           let temp = `
+                <p>${data.address.Address}</p>
                 <p>${data.address.City}, ${data.address.LongLabel.split(", ")[2]} ${data.address.Postal}</p>
             `;
             mapView.popup.open({
-                title: "Open from sidebar",
                 location: [data.location.x,data.location.y],
                 content: temp
             });
         }
-
-        const populateFeatureLayer = (feature)=>{
-            console.log("polulating featureLayer");
-        };
 
         const getMapViewExtent = ()=>{
             const ext = {
