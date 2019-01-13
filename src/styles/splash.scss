@@ -5,6 +5,7 @@
     left: 0;
     right: 0;
     background: rgba(0,0,0,.7);
+    z-index: 10;
 
     display: flex;
     justify-content: center;
@@ -14,7 +15,7 @@
 }
 
 #splashWindow {
-     width: 60%;
+     width: 50%;
      
      //height: 70%; 
 }
