@@ -24,9 +24,9 @@ export default function(options={
 
             const html = `
                 <div>
-                    <span class="fonct-size--1 js-show-address span-white" data-index='${index}'>
+                    <p class="fonct-size--1 js-show-address span-white pointer" data-index='${index}'>
                         ${address.address.LongLabel}
-                    </span>
+                    </p>
                     <hr class="new">
                 </div>
             `;
