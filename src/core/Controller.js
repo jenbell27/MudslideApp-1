@@ -22,7 +22,7 @@ export default function(options={
 
         // findBuildingAddresses();
 
-        findAddressesInRiskAreas();
+        // findAddressesInRiskAreas();
 
         console.log(view);
     };
