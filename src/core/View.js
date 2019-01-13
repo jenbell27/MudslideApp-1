@@ -1,4 +1,5 @@
-import CardView from '../components/CardView';
+import $ from 'jquery';
+
 import CardPanel from '../components/CardPanel';
 
 export default function(){
@@ -35,7 +36,22 @@ export default function(){
         // cardPanel = ;
         // cardPanel.render(data);
 
+        initEventHandlersForSplash();
     };
+
+    const initEventHandlersForSplash = ()=>{
+        // const splashCancelButton = document.querySelector('')
+
+        $('.js-hide-splash').on('click', function(evt){
+            toggleSplashVisibility(false);
+        });
+
+
+    };
+
+    const toggleSplashVisibility = (isVisible)=>{
+        document.getElementById('splashWindowWrap').classList.toggle('hide', !isVisible);
+    }
 
     return {
         init,
