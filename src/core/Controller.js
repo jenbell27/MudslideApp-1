@@ -5,6 +5,8 @@ export default function(options={
     view: null
 }){
 
+    let addressInRiskArea = [];
+
     const mapControl = options.mapControl;
     const view = options.view;
 
@@ -17,34 +19,41 @@ export default function(options={
         view.init({
             addressCardOnClickHandler: (data)=>{
                 mapControl.zoomToAddress(data);
+            },
+            searchAreaBtnOnClickHandler: ()=>{
+                const ext = mapControl.getMapViewExtent();
+                findAddressesInRiskAreas(ext);
+                // console.log(ext);
             }
         });
 
         // findBuildingAddresses();
 
-        findAddressesInRiskAreas();
+        // findAddressesInRiskAreas();
 
-        console.log(view);
+        // console.log(view);
+
+
     };
 
-    // return all building addresses inside of the input geometry
-    const findBuildingAddresses = (geometry)=>{
+    // // return all building addresses inside of the input geometry
+    // const findBuildingAddresses = (geometry)=>{
 
-        geometry = geometry || {"spatialReference":{"latestWkid":3857,"wkid":102100},"rings":[[[-13195122.995916035,4035604.5419347575],[-13195066.72976617,4035677.7940990073],[-13194995.600881053,4035648.06859206],[-13194932.964857338,4035518.550277944],[-13195096.455273116,4035486.7015100867],[-13195122.995916035,4035604.5419347575]]]};
+    //     geometry = geometry || {"spatialReference":{"latestWkid":3857,"wkid":102100},"rings":[[[-13195122.995916035,4035604.5419347575],[-13195066.72976617,4035677.7940990073],[-13194995.600881053,4035648.06859206],[-13194932.964857338,4035518.550277944],[-13195096.455273116,4035486.7015100867],[-13195122.995916035,4035604.5419347575]]]};
 
-        $.ajax({
-            method: "GET",
-            url: "https://hack2019.vannizhang.com/queryBuildings",
-            data: { 
-                geometry, 
-            }
-        })
-        .done(function( res ) {
-            console.log( "findBuildingAddresses", res);
-            // view.cardPanel.render(res);
-            // mapControl.showAddresses(res);
-        });
-    };
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "https://hack2019.vannizhang.com/queryBuildings",
+    //         data: { 
+    //             geometry, 
+    //         }
+    //     })
+    //     .done(function( res ) {
+    //         console.log( "findBuildingAddresses", res);
+    //         // view.cardPanel.render(res);
+    //         // mapControl.showAddresses(res);
+    //     });
+    // };
 
     const findAddressesInRiskAreas = (extent)=>{
 
@@ -58,12 +67,30 @@ export default function(options={
             }
         })
         .done(function( results ) {
-            console.log( "findAddressesInRiskAreas results", results);
-            view.cardPanel.render(results);
-            mapControl.showAddresses(results);
+            // console.log( "findAddressesInRiskAreas results", results);
+
+            if(results.error){
+                console.error(results.error);
+                findAddressesInRiskAreasOnErrorHandler();
+            } else {
+                findAddressesInRiskAreasOnSuccessHandler(results);
+            }
+            
         });
 
-    }
+    };
+
+    const findAddressesInRiskAreasOnSuccessHandler = (results)=>{
+        addressInRiskArea = results;
+        view.cardPanel.render(results);
+        mapControl.showAddresses(results);
+    };
+
+    const findAddressesInRiskAreasOnErrorHandler = ()=>{
+        addressInRiskArea = [];
+        view.cardPanel.render([]);
+        mapControl.showAddresses([]);
+    };
 
     return {
         init

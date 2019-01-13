@@ -5,6 +5,7 @@ import CardPanel from '../components/CardPanel';
 export default function () {
 
     let addressCardOnClickHandler = null;
+    let searchAreaBtnOnClickHandler = null;
 
     let cardPanel = new CardPanel({
         containerID: 'cardPanel',
@@ -21,6 +22,8 @@ export default function () {
         console.log('initiating app view');
 
         addressCardOnClickHandler = options.addressCardOnClickHandler || null;
+
+        searchAreaBtnOnClickHandler = options.searchAreaBtnOnClickHandler || null;
 
 
         // const cardview = new CardView({
@@ -66,6 +69,10 @@ export default function () {
     const initEventHandlerForSearchBtn = () => {
         $('.js-searchTheArea-btn').click(function () {
             console.log("The button is: Search This Area");
+
+            if(searchAreaBtnOnClickHandler){
+                searchAreaBtnOnClickHandler();
+            }
         });
     };
 
