@@ -20,7 +20,9 @@
 		<div id='sidebarDiv'>
 			<div class='panel panel-no-border panel-transparent'>
 
-				<div id='cardPanel'></div>
+				<div id='cardPanel'>
+					<%= require('html-loader?interpolate!./cardPanelDefaultTxt.template.html') %>
+				</div>
 				<!-- <a class="js-modal-toggle btn" href="#" data-modal="foo"><span>Show Modal</span></a> -->
 
 				<%= require('html-loader?interpolate!./controlButtons.template.html') %>
@@ -33,10 +35,9 @@
 
 			<%= require('html-loader?interpolate!./searchButton.template.html') %>
 			<%= require('html-loader?interpolate!./loaderComponent.template.html') %>
-
 		</div>
 
-
+		<%= require('html-loader?interpolate!./noResultAlert.template.html') %>
 
 
 		<!--

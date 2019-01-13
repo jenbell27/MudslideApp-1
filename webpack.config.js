@@ -2,7 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports =  (env, options)=> {
 
@@ -70,17 +70,17 @@ module.exports =  (env, options)=> {
                 }
             })
         ],
-        optimization: {
-            minimizer: [
-                new UglifyJsPlugin({
-                    uglifyOptions: {
-                        compress: {
-                            drop_console: true,
-                        }
-                    }
-                })
-            ]
-        }
+        // optimization: {
+        //     minimizer: [
+        //         new UglifyJsPlugin({
+        //             uglifyOptions: {
+        //                 compress: {
+        //                     drop_console: true,
+        //                 }
+        //             }
+        //         })
+        //     ]
+        // }
     }
 
 };

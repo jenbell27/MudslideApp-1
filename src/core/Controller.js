@@ -24,6 +24,9 @@ export default function(options={
                 const ext = mapControl.getMapViewExtent();
                 findAddressesInRiskAreas(ext);
                 // console.log(ext);
+            },
+            downloadCsvOnClickHandler: ()=>{
+                downloadAsCsv();
             }
         });
 
@@ -78,18 +81,24 @@ export default function(options={
             
         });
 
+        view.toggleLoaderVisibility(true);
+
     };
 
     const findAddressesInRiskAreasOnSuccessHandler = (results)=>{
         addressInRiskArea = removeDup(results);
         view.cardPanel.render(addressInRiskArea);
         mapControl.showAddresses(addressInRiskArea);
+
+        view.toggleLoaderVisibility(false);
     };
 
     const findAddressesInRiskAreasOnErrorHandler = ()=>{
         addressInRiskArea = [];
         view.cardPanel.render([]);
         mapControl.showAddresses([]);
+
+        view.toggleLoaderVisibility(false);
     };
 
     const removeDup = (data)=>{

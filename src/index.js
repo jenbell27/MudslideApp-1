@@ -101,30 +101,39 @@ loadModules([
             mapView.popup.content = populateTemplate.content;
         };
 
-        const checkData = (addressesArray)=>{
-            if(addressesArray.length > 0){
-                return true;
-            }
-            return false;
-        }
+        // const checkData = (addressesArray)=>{
+        //     if(addressesArray.length > 0){
+        //         return true;
+        //     }
+        //     return false;
+        // }
 
         const showAddresses = (data)=>{
 
-            if(!checkData(data)){
-                alert("Sorry there are no addresses in this extent");
-                return;
-            }
-            console.log('show addresses on map', data);
-            
-            //make sure to clear any existing graphics
-            if(graphicsLayer.graphics.length > 0){
-                graphicsLayer.removeAll();
+            graphicsLayer.removeAll();
+
+            if(data.length){
+                data.forEach(function(element){
+                    populateTemplate(element.address);
+                    displayPoint(element);
+                });
             }
 
-            data.forEach(function(element){
-                populateTemplate(element.address);
-                displayPoint(element);
-            });
+            // if(!checkData(data)){
+            //     alert("Sorry there are no addresses in this extent");
+            //     return;
+            // }
+            // console.log('show addresses on map', data);
+            
+            // //make sure to clear any existing graphics
+            // if(graphicsLayer.graphics.length > 0){
+            //     graphicsLayer.removeAll();
+            // }
+
+            // data.forEach(function(element){
+            //     populateTemplate(element.address);
+            //     displayPoint(element);
+            // });
 
            // zoomToMap(data[0].location.x,data[0].location.y,12);
         };
