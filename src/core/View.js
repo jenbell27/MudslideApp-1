@@ -59,6 +59,8 @@ export default function () {
     const initEventHandlerForControlBtns = () => {
         $('.js-sideBar-control-btn-1').click(function () {
             console.log("The button is: Download Addresses");
+
+            
         });
 
         $('.js-sideBar-control-btn-2').click(function () {
@@ -76,6 +78,7 @@ export default function () {
         });
     };
 
+    
     return {
         init,
         cardPanel
