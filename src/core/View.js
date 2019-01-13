@@ -42,6 +42,8 @@ export default function () {
         initEventHandlersForSplash();
         initEventHandlerForControlBtns();
         initEventHandlerForSearchBtn();
+        toggleControlBtnContainerVisibility(false);
+        
     };
 
     const initEventHandlersForSplash = () => {
@@ -52,19 +54,33 @@ export default function () {
         });
     };
 
+    //toggle visibility for splash window
     const toggleSplashVisibility = (isVisible) => {
         document.getElementById('splashWindowWrap').classList.toggle('hide', !isVisible);
     };
 
+    //toggle visibility for Loader
+    const toggleLoaderVisibility = (isVisible) => {
+        document.getElementById('loaderComponent').classList.toggle('hide', !isVisible);
+    };
+
+    //toggle visibility for control button container
+    const toggleControlBtnContainerVisibility = (isVisible) => {
+        document.getElementById('demoInfo-container-wrap').classList.toggle('hide', !isVisible);
+    };
+
+
     const initEventHandlerForControlBtns = () => {
-        $('.js-sideBar-control-btn-1').click(function () {
-            console.log("The button is: Download Addresses");
+        // $('.js-sideBar-control-btn-1').click(function () {
+        //     console.log("The button is: Download Addresses");
 
-            
-        });
+        //     //open the container
+        //     $('#js-controlButton-container-wrap').show();
+        // });
 
-        $('.js-sideBar-control-btn-2').click(function () {
+        $('.js-open-demo-container').click(function () {
             console.log("The button is: Population Affected");
+            toggleControlBtnContainerVisibility(true);
         });
     };
 
@@ -81,6 +97,7 @@ export default function () {
     
     return {
         init,
-        cardPanel
+        cardPanel,
+        toggleLoaderVisibility
     };
 }
