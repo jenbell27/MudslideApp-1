@@ -109,6 +109,7 @@ loadModules([
         }
 
         const showAddresses = (data)=>{
+
             if(!checkData(data)){
                 alert("Sorry there are no addresses in this extent");
                 return;
@@ -157,21 +158,20 @@ loadModules([
 
         const zoomToAddress = (data)=>{
             console.log('zoom to address', data);
-            // mapView.goTo({
-            //     //target: [data.location.x,data.location.y],
-            //     center: [data.location.x,data.location.y],
-            //     zoom: 18
-            // });
-            zoomToMap(data.location.x,data.location.y,18);
-           //debugger;
-           let temp = `
-                <p>${data.address.Address}</p>
-                <p>${data.address.City}, ${data.address.LongLabel.split(", ")[2]} ${data.address.Postal}</p>
-            `;
-            mapView.popup.open({
-                location: [data.location.x,data.location.y],
-                content: temp
-            });
+            try{
+                zoomToMap(data.location.x,data.location.y,18);
+                let temp = `
+                        <p>${data.address.Address}</p>
+                        <p>${data.address.City}, ${data.address.LongLabel.split(", ")[2]} ${data.address.Postal}</p>
+                    `;
+                    mapView.popup.open({
+                        location: [data.location.x,data.location.y],
+                        content: temp
+                    });
+            }catch(err){
+                console.log("failed to zoom map: "  + err);
+            }
+           
         }
 
         const getMapViewExtent = ()=>{

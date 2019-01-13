@@ -81,9 +81,9 @@ export default function(options={
     };
 
     const findAddressesInRiskAreasOnSuccessHandler = (results)=>{
-        addressInRiskArea = results;
-        view.cardPanel.render(results);
-        mapControl.showAddresses(results);
+        addressInRiskArea = removeDup(results);
+        view.cardPanel.render(addressInRiskArea);
+        mapControl.showAddresses(addressInRiskArea);
     };
 
     const findAddressesInRiskAreasOnErrorHandler = ()=>{
@@ -91,6 +91,13 @@ export default function(options={
         view.cardPanel.render([]);
         mapControl.showAddresses([]);
     };
+
+    const removeDup = (data)=>{
+        var seen = {};
+        return data.filter(function(item) {
+            return seen.hasOwnProperty(item.address.LongLabel) ? false : (seen[item.address.LongLabel] = true);
+        });
+    }
 
     return {
         init
