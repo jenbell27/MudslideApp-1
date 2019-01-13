@@ -1,49 +1,55 @@
 <html dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-		<meta name="viewport" content="width=device-width">
-		<title><%= htmlWebpackPlugin.options.title %></title>
-		<link rel="icon" href="//www.esri.com/favicon.ico">
-	</head>
-	<body>
-		<!-- <div class="esri-header-barrier"></div> -->
 
-		<%= require('html-loader?interpolate!./topnav.template.html') %>
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="width=device-width">
+	<title>
+		<%= htmlWebpackPlugin.options.title %>
+	</title>
+	<link rel="icon" href="//www.esri.com/favicon.ico">
+</head>
 
-		<div class='main-content'>
+<body>
+	<!-- <div class="esri-header-barrier"></div> -->
 
-			<div id='sidebarDiv'>
-				<div class='panel panel-no-border panel-transparent'>
+	<%= require('html-loader?interpolate!./topnav.template.html') %>
 
-					<div id='cardPanel'></div>
-					<!-- <a class="js-modal-toggle btn" href="#" data-modal="foo"><span>Show Modal</span></a> -->
+	<div class='main-content'>
 
-					<%= require('html-loader?interpolate!./controlButtons.template.html') %>
-				</div>
+		<div id='sidebarDiv'>
+			<div class='panel panel-no-border panel-transparent'>
+
+				<div id='cardPanel'></div>
+				<!-- <a class="js-modal-toggle btn" href="#" data-modal="foo"><span>Show Modal</span></a> -->
+
+				<%= require('html-loader?interpolate!./controlButtons.template.html') %>
 			</div>
+		</div>
 
-			<div id='viewDivContainer'>
+		<div id='viewDivContainer'>
 
-				<div id='viewDiv'></div>
+			<div id='viewDiv'></div>
 
-				<%= require('html-loader?interpolate!./searchButton.template.html') %>
-				<%= require('html-loader?interpolate!./loaderComponent.template.html') %>
-
-			</div>
-			
-			
-			
-            
-            <!--
-            <%= require('html-loader?interpolate!./test.template.html') %>
-            -->
+			<%= require('html-loader?interpolate!./searchButton.template.html') %>
+			<%= require('html-loader?interpolate!./loaderComponent.template.html') %>
 
 		</div>
 
-		<%= require('html-loader?interpolate!./splash.template.html') %>
 
-		<!-- <div class="esri-footer-barrier"></div> -->
 
-	</body>
+
+		<!--
+            <%= require('html-loader?interpolate!./test.template.html') %>
+            -->
+
+	</div>
+
+	<%= require('html-loader?interpolate!./splash.template.html') %>
+	<%= require('html-loader?interpolate!./controlButtonContainer.template.html') %>
+
+	<!-- <div class="esri-footer-barrier"></div> -->
+
+</body>
+
 </html>

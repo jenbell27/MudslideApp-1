@@ -1,0 +1,12 @@
+#loaderComponent{
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    z-index: 5;
+    width: 200px;
+    text-align: center;
+}
+
+.loader-text{
+    color: white;
+}
