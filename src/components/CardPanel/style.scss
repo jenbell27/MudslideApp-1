@@ -2,11 +2,21 @@
   height: 90%;
   overflow-y: auto;
   padding: 0 .5rem;
+  background: #202020
 }
 
 .address-card {
   padding: 1rem 0;
   border-bottom: 1px solid #efefef;
+}
+
+.address-card2 {
+  background: #212121;
+}
+
+.span-white{
+  color:white;
+  padding-left: 100px;
 }
 
 // p
@@ -31,3 +41,10 @@
 #cardPanel::-webkit-scrollbar-thumb:hover {
   background: #a9a9a9; 
 }
+
+
+hr.new {
+  margin:25;
+  border-top: 2px solid white;
+}
+
