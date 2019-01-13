@@ -37,6 +37,7 @@ export default function(){
         // cardPanel.render(data);
 
         initEventHandlersForSplash();
+        initEventHandlerForControlBtns();
     };
 
     const initEventHandlersForSplash = ()=>{
@@ -45,13 +46,25 @@ export default function(){
         $('.js-hide-splash').on('click', function(evt){
             toggleSplashVisibility(false);
         });
-
-
     };
 
     const toggleSplashVisibility = (isVisible)=>{
         document.getElementById('splashWindowWrap').classList.toggle('hide', !isVisible);
-    }
+    };
+
+    const initEventHandlerForControlBtns = ()=>{
+        $('.leader-1').click(function(){
+            console.log("The button is: Download Addresses");
+          });
+
+          $('.leader-2').click(function(){
+            console.log("The button is: Population Affected");
+          });
+    };
+
+    const initEventHandlerForSearchBtn = ()=>{
+       
+    };
 
     return {
         init,
