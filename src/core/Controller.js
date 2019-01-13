@@ -20,7 +20,9 @@ export default function(options={
             }
         });
 
-        findBuildingAddresses();
+        // findBuildingAddresses();
+
+        findAddressesInRiskAreas();
 
         console.log(view);
     };
@@ -39,10 +41,29 @@ export default function(options={
         })
         .done(function( res ) {
             console.log( "findBuildingAddresses", res);
-            view.cardPanel.render(res);
-            mapControl.showAddresses(res);
+            // view.cardPanel.render(res);
+            // mapControl.showAddresses(res);
         });
     };
+
+    const findAddressesInRiskAreas = (extent)=>{
+
+        extent = extent || {"xmin": -13322883.293076182,"ymin": 4084351.745245313,"xmax": -13314704.531049678,"ymax": 4089281.9335697,"spatialReference":{"wkid":102100,"latestWkid":3857}};
+
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:8500/queryAddressesInRiskAreas",
+            data: { 
+                extent, 
+            }
+        })
+        .done(function( results ) {
+            console.log( "findAddressesInRiskAreas results", results);
+            view.cardPanel.render(results);
+            mapControl.showAddresses(results);
+        });
+
+    }
 
     return {
         init
