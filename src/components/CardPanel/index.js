@@ -13,13 +13,26 @@ export default function(options={
         addressData.forEach(function(address, index){
 
 
+            // const html = `
+            //     <div>
+            //         <span class="fonct-size--1 js-show-address" data-index='${index}'>
+            //             ${address.address.LongLabel}
+            //         </span>
+            //         <hr class="new">
+            //     </div>
+            // `;
+
             const html = `
-                <div class='address-card'>
-                    <span class="fonct-size--1 js-show-address" data-index='${index}'>
+                <div>
+                    <span class="fonct-size--1 js-show-address span-white" data-index='${index}'>
                         ${address.address.LongLabel}
                     </span>
+                    <hr class="new">
                 </div>
             `;
+
+            //#212121 hex value for Card background
+            //white text and white line
 
             cardsHtml+= html;
         });

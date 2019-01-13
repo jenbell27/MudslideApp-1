@@ -39,3 +39,7 @@ $sidebar-width: 400px;
     right: 0;
     bottom: 0;
 }
+
+.panel-transparent {
+    background-color: rgba(0,0,0,0)  !important;
+}

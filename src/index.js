@@ -61,16 +61,15 @@ loadModules([
         };
 
         let popupTemplate = {
-            title: "Address",
             content: ''
         };
 
         const populateTemplate = (feature)=>{
+            let temp = feature.LongLabel.split(", ");
+            
             popupTemplate.content = `
-                <p>Address: ${feature.Address}</p>
-                <p>City: ${feature.City}</p>
-                <p>Region: ${feature.Region}</p>
-                <p>ZIP: ${feature.Postal}</p>
+                <p>${feature.Address}</p>
+                <p>${feature.City}, ${feature.LongLabel.split(", ")[2]} ${feature.Postal}</p>
             `;
         };
 
