@@ -21,8 +21,16 @@
 				</div>
 			</div>
 
-            <div id='viewDiv'></div>
+			<div id='viewDivContainer'>
 
+				<div id='viewDiv'></div>
+
+				<%= require('html-loader?interpolate!./searchButton.template.html') %>
+
+			</div>
+			
+			
+			
             
             <!--
             <%= require('html-loader?interpolate!./test.template.html') %>
