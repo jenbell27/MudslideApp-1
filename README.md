@@ -1,5 +1,5 @@
-# MudslideApp
-Determine structures and roads affected by potential mudslides using current weather forecasts.
+# _SLIDE_
+Determine structures affected by potential mudslides using current weather forecasts.
 
 ## Prerequisites
 Before we begin, make sure you have a fresh version of [Node.js](https://nodejs.org/en/) and NPM installed. The current Long Term Support (LTS) release is an ideal starting point. 
