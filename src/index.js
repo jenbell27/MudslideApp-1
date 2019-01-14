@@ -18,7 +18,8 @@ loadModules([
     "esri/widgets/Home",
     "esri/widgets/Search",
     "esri/widgets/Popup",
-    "esri/layers/FeatureLayer"
+    "esri/layers/FeatureLayer",
+    "esri/geometry/support/webMercatorUtils"
 ]).then(([
     MapView, 
     WebMap,
@@ -28,7 +29,8 @@ loadModules([
     Home,
     Search,
     Popup,
-    FeatureLayer
+    FeatureLayer,
+    webMercatorUtils
 ])=>{
 
     const MapControl = function(MapControlOptions={
@@ -125,7 +127,7 @@ loadModules([
                     displayPoint(element);
                 });
                 //for querying the featureLayer
-                
+
             }
         };
 
@@ -175,13 +177,27 @@ loadModules([
         }
 
         const getMapViewExtent = ()=>{
+            // const ext = {
+            //     "xmin": mapView.extent.xmin,
+            //     "ymin": mapView.extent.ymin,
+            //     "xmax": mapView.extent.xmax,
+            //     "ymax": mapView.extent.ymax,
+            //     "spatialReference":{"wkid":102100,"latestWkid":3857}
+            // };
+
+            const coordMinInWgs84 = webMercatorUtils.xyToLngLat(mapView.extent.xmin, mapView.extent.ymin);
+            const coordMaxInWgs84 = webMercatorUtils.xyToLngLat(mapView.extent.xmax, mapView.extent.ymax);
+
             const ext = {
-                "xmin": mapView.extent.xmin,
-                "ymin": mapView.extent.ymin,
-                "xmax": mapView.extent.xmax,
-                "ymax": mapView.extent.ymax,
-                "spatialReference":{"wkid":102100,"latestWkid":3857}
+                "xmin": coordMinInWgs84[0],
+                "ymin": coordMinInWgs84[1],
+                "xmax": coordMaxInWgs84[0],
+                "ymax": coordMaxInWgs84[1],
+                "spatialReference":{"wkid":4326}
             };
+
+            // console.log(coordMin, coordMax);
+
             return ext;
         };
 
