@@ -93,6 +93,7 @@ export default function () {
         $('.js-open-demo-container').click(function () {
             console.log("The button is: Population Affected");
             //toggleControlBtnContainerVisibility(true);
+            openDemoLinkOnClickHandler();
         });
 
         $('.js-download-csv').on('click', function(){
