@@ -45,12 +45,17 @@ export default function(options={
             cardsHtml+= html;
         });
 
+        let countsHtml =  `<p class="p-align">Total address count: ${addressData.length}</p>`
+
         //check if data is empty, if it is, display the message of none found
         if(cardsHtml.length < 1){
             cardsHtml = displayNoResultsMessage(cardsHtml);
+            countsHtml = '';
         }
 
-        container.innerHTML = cardsHtml;
+        
+
+        container.innerHTML = countsHtml+cardsHtml;
         
         initClickListener(addressData);
     };
