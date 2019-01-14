@@ -7,6 +7,7 @@ export default function () {
     let addressCardOnClickHandler = null;
     let searchAreaBtnOnClickHandler = null;
     let downloadCsvOnClickHandler = null;
+    let openDemoLinkOnClickHandler = null;
 
     let cardPanel = new CardPanel({
         containerID: 'cardPanel',
@@ -27,6 +28,8 @@ export default function () {
         searchAreaBtnOnClickHandler = options.searchAreaBtnOnClickHandler || null;
 
         downloadCsvOnClickHandler = options.downloadCsvOnClickHandler || null;
+
+        openDemoLinkOnClickHandler = options.openDemoLinkOnClickHandler || null;
 
 
         // const cardview = new CardView({
@@ -89,7 +92,7 @@ export default function () {
 
         $('.js-open-demo-container').click(function () {
             console.log("The button is: Population Affected");
-            toggleControlBtnContainerVisibility(true);
+            //toggleControlBtnContainerVisibility(true);
         });
 
         $('.js-download-csv').on('click', function(){

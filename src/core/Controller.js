@@ -1,32 +1,35 @@
 import $ from 'jquery';
 
-export default function(options={
+export default function (options = {
     mapControl: null,
     view: null
-}){
+}) {
 
     let addressInRiskArea = [];
 
     const mapControl = options.mapControl;
     const view = options.view;
 
-    const init = ()=>{
+    const init = () => {
 
         console.log('initiating app controller');
 
         mapControl.init();
-        
+
         view.init({
-            addressCardOnClickHandler: (data)=>{
+            addressCardOnClickHandler: (data) => {
                 mapControl.zoomToAddress(data);
             },
-            searchAreaBtnOnClickHandler: ()=>{
+            searchAreaBtnOnClickHandler: () => {
                 const ext = mapControl.getMapViewExtent();
                 findAddressesInRiskAreas(ext);
                 // console.log(ext);
             },
-            downloadCsvOnClickHandler: ()=>{
+            downloadCsvOnClickHandler: () => {
                 downloadAsCsv();
+            },
+            openDemoLinkOnClickHandler: () => {
+
             }
         });
 
@@ -58,34 +61,34 @@ export default function(options={
     //     });
     // };
 
-    const findAddressesInRiskAreas = (extent)=>{
+    const findAddressesInRiskAreas = (extent) => {
 
-        extent = extent || {"xmin": -13322883.293076182,"ymin": 4084351.745245313,"xmax": -13314704.531049678,"ymax": 4089281.9335697,"spatialReference":{"wkid":102100,"latestWkid":3857}};
+        extent = extent || { "xmin": -13322883.293076182, "ymin": 4084351.745245313, "xmax": -13314704.531049678, "ymax": 4089281.9335697, "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
 
         $.ajax({
             method: "GET",
             url: "http://localhost:8500/queryAddressesInRiskAreas",
-            data: { 
-                extent, 
+            data: {
+                extent,
             }
         })
-        .done(function( results ) {
-            // console.log( "findAddressesInRiskAreas results", results);
+            .done(function (results) {
+                // console.log( "findAddressesInRiskAreas results", results);
 
-            if(results.error){
-                console.error(results.error);
-                findAddressesInRiskAreasOnErrorHandler();
-            } else {
-                findAddressesInRiskAreasOnSuccessHandler(results);
-            }
-            
-        });
+                if (results.error) {
+                    console.error(results.error);
+                    findAddressesInRiskAreasOnErrorHandler();
+                } else {
+                    findAddressesInRiskAreasOnSuccessHandler(results);
+                }
+
+            });
 
         view.toggleLoaderVisibility(true);
 
     };
 
-    const findAddressesInRiskAreasOnSuccessHandler = (results)=>{
+    const findAddressesInRiskAreasOnSuccessHandler = (results) => {
         addressInRiskArea = removeDup(results);
         view.cardPanel.render(addressInRiskArea);
         mapControl.showAddresses(addressInRiskArea);
@@ -93,7 +96,7 @@ export default function(options={
         view.toggleLoaderVisibility(false);
     };
 
-    const findAddressesInRiskAreasOnErrorHandler = ()=>{
+    const findAddressesInRiskAreasOnErrorHandler = () => {
         addressInRiskArea = [];
         view.cardPanel.render([]);
         mapControl.showAddresses([]);
@@ -102,25 +105,25 @@ export default function(options={
         view.toggleAlertVisibility(true);
     };
 
-    const removeDup = (data)=>{
+    const removeDup = (data) => {
         var seen = {};
-        return data.filter(function(item) {
+        return data.filter(function (item) {
             return seen.hasOwnProperty(item.address.LongLabel) ? false : (seen[item.address.LongLabel] = true);
         });
     };
 
-    const getAddressDataAsCsv = ()=>{
+    const getAddressDataAsCsv = () => {
 
-        const addressesStr = addressInRiskArea.map(d=>{
+        const addressesStr = addressInRiskArea.map(d => {
             return d.address.Match_addr;
         }).join('\r\n');
 
         const outputStr = `data:text/csv;charset=utf-8,addresses in risk area\r\n${addressesStr}`;
-        
-        return outputStr; 
+
+        return outputStr;
     };
 
-    const downloadAsCsv = ()=>{
+    const downloadAsCsv = () => {
         const csvStr = getAddressDataAsCsv();
         const encodedUri = encodeURI(csvStr);
         const link = document.createElement("a");
@@ -131,9 +134,18 @@ export default function(options={
         link.click();
     };
 
+    const openDemoReport = () => {
+        //     $('.js-open-demo-container').on('click', function(){
+        //         location.href='https://www.google.com';    
+        //    });
+        // $('.js-open-demo-container').click(function() {
+        //     window.open = "https://www.google.com";
+        // });
+    };
+
     return {
         init,
         downloadAsCsv
     };
-    
+
 }
