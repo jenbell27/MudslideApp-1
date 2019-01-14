@@ -45,7 +45,7 @@ export default function(options={
             cardsHtml+= html;
         });
 
-        let countsHtml =  `<p class="p-align">Total address count: ${addressData.length}</p>`
+        let countsHtml =  `<div class="cardViewHeader">Total addresses: ${addressData.length}</div><hr class="hr-new">`
 
         //check if data is empty, if it is, display the message of none found
         if(cardsHtml.length < 1){
