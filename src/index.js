@@ -17,7 +17,8 @@ loadModules([
     "esri/symbols/PictureMarkerSymbol",
     "esri/widgets/Home",
     "esri/widgets/Search",
-    "esri/widgets/Popup"
+    "esri/widgets/Popup",
+    "esri/layers/FeatureLayer"
 ]).then(([
     MapView, 
     WebMap,
@@ -26,7 +27,8 @@ loadModules([
     PictureMarkerSymbol,
     Home,
     Search,
-    Popup
+    Popup,
+    FeatureLayer
 ])=>{
 
     const MapControl = function(MapControlOptions={
@@ -48,6 +50,11 @@ loadModules([
         let popup = {
             content: ''
         };
+
+        const featureLayer = new FeatureLayer({
+            url: "https://services1.arcgis.com/yfahUFAYAdeS5rmM/ArcGIS/rest/services/All_Mudslide_BlockGroups_Enriched/FeatureServer/0",
+            outFields:["GEOID","populationtotals_totpop_cy","Elderly_Population","Young_Children","HH_no_car","ACS_Pop_speak_Oth_No_English","householdtotals_avghhsz_cy"]
+        });
 
         const init = (options)=>{
 
@@ -117,6 +124,8 @@ loadModules([
                     populateTemplate(element.address);
                     displayPoint(element);
                 });
+                //for querying the featureLayer
+                
             }
         };
 
