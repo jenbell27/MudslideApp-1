@@ -114,11 +114,18 @@ export default function (options = {
 
     const getAddressDataAsCsv = () => {
 
-        const addressesStr = addressInRiskArea.map(d => {
-            return d.address.Match_addr;
+        const headers = ['Address', 'City', 'State', 'Zip', 'Lat', 'Lon'].join(',');
+
+        const addressesToInclude = addressInRiskArea.filter(d=>{
+            return d.address.Addr_type === 'PointAddress'
+        });
+
+        const addressesStr = addressesToInclude.map(d => {
+            const rowData = `${d.address.Match_addr},${d.location.y},${d.location.x}`;
+            return rowData;
         }).join('\r\n');
 
-        const outputStr = `data:text/csv;charset=utf-8,addresses in risk area\r\n${addressesStr}`;
+        const outputStr = `data:text/csv;charset=utf-8,${headers}\r\n${addressesStr}`;
 
         return outputStr;
     };
