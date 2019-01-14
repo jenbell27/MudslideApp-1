@@ -25,6 +25,9 @@ Now you can start the webpack dev server to test the app on your local machine:
 npm run start
 ```
 
+## The Node.js Web Service
+The front end app also needs to use a middleware Node.js web service to get data via REST API call, to set up the web service, please use the codes from this [repo](https://github.com/vannizhang/MudslideApp-server)
+
 ## Deployment
 To build/deploye the website, you can simply run:
 
@@ -33,64 +36,3 @@ To build/deploye the website, you can simply run:
 npm run build
 ```
 <br><br><br>
-
-# Development
-
-
-## Source Directory Structure
-
-- ### components 
-    all dynamica ui components
-
-- ### core 
-    javaScript files that manage the main business logic of the app: controller, view, data model and etc. 
-
-- ### layouts 
-    template `.html` files that specify how the app and each section will be rendered. 
-
-- ### static 
-    images, logos and etc
-
-- ### styles 
-    all `.scss` files, let's use the `index.scss` as a entry point to load all other `.scss` files
-
-- ### utils     
-    the utility JavaScript files that could be used site-wide
-
-<br>
-
-## Working with the Repo
-
-- configure the remote for your fork
-
-    - specify a new remote upstream repository that will be synced with the fork
-    ```
-    git remote add upstream https://github.com/vannizhang/MudslideApp.git
-    ```
-
-    - verify the new upstream repository you've specified for your fork.
-    ```
-    git remote -v
-    ```
-
-- sync with the main repo
-    ```
-    git fetch upstream
-
-    git merge upstream/master
-    ```
-
-- push your changes
-
-    - commit the changes first
-        ```
-        git add .
-
-        git commit -m "YOUR MESSAGE"
-        ```
-    
-    - push changes to your fork
-        ````
-        git push origin master
-        ```
-    - go to your fork on GitHub and create a new pull request

@@ -17,7 +17,9 @@ loadModules([
     "esri/symbols/PictureMarkerSymbol",
     "esri/widgets/Home",
     "esri/widgets/Search",
-    "esri/widgets/Popup"
+    "esri/widgets/Popup",
+    "esri/layers/FeatureLayer",
+    "esri/geometry/support/webMercatorUtils"
 ]).then(([
     MapView, 
     WebMap,
@@ -26,7 +28,9 @@ loadModules([
     PictureMarkerSymbol,
     Home,
     Search,
-    Popup
+    Popup,
+    FeatureLayer,
+    webMercatorUtils
 ])=>{
 
     const MapControl = function(MapControlOptions={
@@ -48,6 +52,11 @@ loadModules([
         let popup = {
             content: ''
         };
+
+        const featureLayer = new FeatureLayer({
+            url: "https://services1.arcgis.com/yfahUFAYAdeS5rmM/ArcGIS/rest/services/All_Mudslide_BlockGroups_Enriched/FeatureServer/0",
+            outFields:["GEOID","populationtotals_totpop_cy","Elderly_Population","Young_Children","HH_no_car","ACS_Pop_speak_Oth_No_English","householdtotals_avghhsz_cy"]
+        });
 
         const init = (options)=>{
 
@@ -117,6 +126,8 @@ loadModules([
                     populateTemplate(element.address);
                     displayPoint(element);
                 });
+                //for querying the featureLayer
+
             }
         };
 
@@ -166,13 +177,27 @@ loadModules([
         }
 
         const getMapViewExtent = ()=>{
+            // const ext = {
+            //     "xmin": mapView.extent.xmin,
+            //     "ymin": mapView.extent.ymin,
+            //     "xmax": mapView.extent.xmax,
+            //     "ymax": mapView.extent.ymax,
+            //     "spatialReference":{"wkid":102100,"latestWkid":3857}
+            // };
+
+            const coordMinInWgs84 = webMercatorUtils.xyToLngLat(mapView.extent.xmin, mapView.extent.ymin);
+            const coordMaxInWgs84 = webMercatorUtils.xyToLngLat(mapView.extent.xmax, mapView.extent.ymax);
+
             const ext = {
-                "xmin": mapView.extent.xmin,
-                "ymin": mapView.extent.ymin,
-                "xmax": mapView.extent.xmax,
-                "ymax": mapView.extent.ymax,
-                "spatialReference":{"wkid":102100,"latestWkid":3857}
+                "xmin": coordMinInWgs84[0],
+                "ymin": coordMinInWgs84[1],
+                "xmax": coordMaxInWgs84[0],
+                "ymax": coordMaxInWgs84[1],
+                "spatialReference":{"wkid":4326}
             };
+
+            // console.log(coordMin, coordMax);
+
             return ext;
         };
 
