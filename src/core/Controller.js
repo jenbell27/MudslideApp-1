@@ -99,6 +99,7 @@ export default function(options={
         mapControl.showAddresses([]);
 
         view.toggleLoaderVisibility(false);
+        view.toggleAlertVisibility(true);
     };
 
     const removeDup = (data)=>{

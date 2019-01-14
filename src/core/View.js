@@ -45,6 +45,7 @@ export default function () {
         initEventHandlersForSplash();
         initEventHandlerForControlBtns();
         initEventHandlerForSearchBtn();
+        initEventHandlerForAlert();
         toggleControlBtnContainerVisibility(false);
         
     };
@@ -60,6 +61,11 @@ export default function () {
     //toggle visibility for splash window
     const toggleSplashVisibility = (isVisible) => {
         document.getElementById('splashWindowWrap').classList.toggle('hide', !isVisible);
+    };
+
+    //toggle visibility for alert
+    const toggleAlertVisibility = (isVisible) => {
+        document.getElementById('noResultAlert').classList.toggle('hide', !isVisible);
     };
 
     //toggle visibility for Loader
@@ -104,10 +110,19 @@ export default function () {
         });
     };
 
+    const initEventHandlerForAlert = () => {
+        $('.js-close-alert').click(function () {
+            console.log("The button is: Search This Area");
+
+            toggleAlertVisibility(false);
+        });
+    };
+
     
     return {
         init,
         cardPanel,
-        toggleLoaderVisibility
+        toggleLoaderVisibility,
+        toggleAlertVisibility
     };
 }
