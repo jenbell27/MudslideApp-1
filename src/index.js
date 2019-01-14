@@ -118,24 +118,6 @@ loadModules([
                     displayPoint(element);
                 });
             }
-
-            // if(!checkData(data)){
-            //     alert("Sorry there are no addresses in this extent");
-            //     return;
-            // }
-            // console.log('show addresses on map', data);
-            
-            // //make sure to clear any existing graphics
-            // if(graphicsLayer.graphics.length > 0){
-            //     graphicsLayer.removeAll();
-            // }
-
-            // data.forEach(function(element){
-            //     populateTemplate(element.address);
-            //     displayPoint(element);
-            // });
-
-           // zoomToMap(data[0].location.x,data[0].location.y,12);
         };
 
         const zoomToMap = (x,y,zoomLevel) =>{
