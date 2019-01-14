@@ -6,6 +6,14 @@ export default function(options={
 }){
     const container = document.getElementById(options.containerID);
 
+    const displayNoResultsMessage = (inputText)=>{
+        return `
+            <p class="h4-2">
+               No mudslide susceptible buildings in this area.
+            </p>
+        `;
+    }
+
     const render = (addressData=[])=>{
 
         var cardsHtml = '';
@@ -36,6 +44,11 @@ export default function(options={
 
             cardsHtml+= html;
         });
+
+        //check if data is empty, if it is, display the message of none found
+        if(cardsHtml.length < 1){
+            cardsHtml = displayNoResultsMessage(cardsHtml);
+        }
 
         container.innerHTML = cardsHtml;
         
