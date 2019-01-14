@@ -29,7 +29,7 @@ export default function (options = {
                 downloadAsCsv();
             },
             openDemoLinkOnClickHandler: () => {
-
+                openDemoReport();
             }
         });
 
@@ -135,12 +135,9 @@ export default function (options = {
     };
 
     const openDemoReport = () => {
-        //     $('.js-open-demo-container').on('click', function(){
-        //         location.href='https://www.google.com';    
-        //    });
-        // $('.js-open-demo-container').click(function() {
-        //     window.open = "https://www.google.com";
-        // });
+        const ext = mapControl.getMapViewExtent();
+        console.log(ext);
+        window.open("https://esribizteam.maps.arcgis.com/apps/webappviewer/index.html?id=f592f7df6e644ae6b0f73ea5e462d335");
     };
 
     return {
